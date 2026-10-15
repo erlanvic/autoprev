@@ -14,7 +14,166 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      expenses: {
+        Row: {
+          categoria: string
+          created_at: string
+          data: string
+          id: string
+          observacoes: string | null
+          valor: number
+          vehicle_id: string
+        }
+        Insert: {
+          categoria: string
+          created_at?: string
+          data: string
+          id?: string
+          observacoes?: string | null
+          valor: number
+          vehicle_id: string
+        }
+        Update: {
+          categoria?: string
+          created_at?: string
+          data?: string
+          id?: string
+          observacoes?: string | null
+          valor?: number
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      maintenance_rules: {
+        Row: {
+          custo_evitado_estimado: number
+          intervalo_km: number
+          intervalo_meses: number
+          tipo: string
+        }
+        Insert: {
+          custo_evitado_estimado?: number
+          intervalo_km: number
+          intervalo_meses: number
+          tipo: string
+        }
+        Update: {
+          custo_evitado_estimado?: number
+          intervalo_km?: number
+          intervalo_meses?: number
+          tipo?: string
+        }
+        Relationships: []
+      }
+      maintenances: {
+        Row: {
+          created_at: string
+          data: string
+          id: string
+          km: number
+          observacoes: string | null
+          tipo: string
+          valor: number
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          data: string
+          id?: string
+          km: number
+          observacoes?: string | null
+          tipo: string
+          valor?: number
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          data?: string
+          id?: string
+          km?: number
+          observacoes?: string | null
+          tipo?: string
+          valor?: number
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "maintenances_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          km_medio_mensal: number
+          nome: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          km_medio_mensal?: number
+          nome?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          km_medio_mensal?: number
+          nome?: string | null
+        }
+        Relationships: []
+      }
+      vehicles: {
+        Row: {
+          ano: number
+          apelido: string | null
+          created_at: string
+          id: string
+          km_atual: number
+          marca: string
+          modelo: string
+          placa: string | null
+          user_id: string
+        }
+        Insert: {
+          ano: number
+          apelido?: string | null
+          created_at?: string
+          id?: string
+          km_atual?: number
+          marca: string
+          modelo: string
+          placa?: string | null
+          user_id: string
+        }
+        Update: {
+          ano?: number
+          apelido?: string | null
+          created_at?: string
+          id?: string
+          km_atual?: number
+          marca?: string
+          modelo?: string
+          placa?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
