@@ -13,6 +13,10 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedVeiculosRouteImport } from './routes/_authenticated/veiculos'
+import { Route as AuthenticatedManutencoesNovaRouteImport } from './routes/_authenticated/manutencoes.nova'
+import { Route as AuthenticatedVeiculosNovoRouteImport } from './routes/_authenticated/veiculos_.novo'
+import { Route as AuthenticatedVeiculosVehicleIdEditarRouteImport } from './routes/_authenticated/veiculos_.$vehicleId.editar'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -33,35 +37,88 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedVeiculosRoute = AuthenticatedVeiculosRouteImport.update({
+  id: '/veiculos',
+  path: '/veiculos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedManutencoesNovaRoute =
+  AuthenticatedManutencoesNovaRouteImport.update({
+    id: '/manutencoes/nova',
+    path: '/manutencoes/nova',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVeiculosNovoRoute =
+  AuthenticatedVeiculosNovoRouteImport.update({
+    id: '/veiculos_/novo',
+    path: '/veiculos/novo',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVeiculosVehicleIdEditarRoute =
+  AuthenticatedVeiculosVehicleIdEditarRouteImport.update({
+    id: '/veiculos_/$vehicleId/editar',
+    path: '/veiculos/$vehicleId/editar',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/veiculos': typeof AuthenticatedVeiculosRoute
+  '/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
+  '/veiculos/novo': typeof AuthenticatedVeiculosNovoRoute
+  '/veiculos/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/veiculos': typeof AuthenticatedVeiculosRoute
   '/': typeof AuthenticatedIndexRoute
+  '/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
+  '/veiculos/novo': typeof AuthenticatedVeiculosNovoRoute
+  '/veiculos/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/veiculos': typeof AuthenticatedVeiculosRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
+  '/_authenticated/veiculos_/novo': typeof AuthenticatedVeiculosNovoRoute
+  '/_authenticated/veiculos_/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/onboarding'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/veiculos'
+    | '/manutencoes/nova'
+    | '/veiculos/novo'
+    | '/veiculos/$vehicleId/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/auth' | '/onboarding' | '/'
+  to:
+    | '/auth'
+    | '/onboarding'
+    | '/veiculos'
+    | '/'
+    | '/manutencoes/nova'
+    | '/veiculos/novo'
+    | '/veiculos/$vehicleId/editar'
   id:
     | '__root__'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/onboarding'
+    | '/_authenticated/veiculos'
     | '/_authenticated/'
+    | '/_authenticated/manutencoes/nova'
+    | '/_authenticated/veiculos_/novo'
+    | '/_authenticated/veiculos_/$vehicleId/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,17 +156,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/veiculos': {
+      id: '/_authenticated/veiculos'
+      path: '/veiculos'
+      fullPath: '/veiculos'
+      preLoaderRoute: typeof AuthenticatedVeiculosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/manutencoes/nova': {
+      id: '/_authenticated/manutencoes/nova'
+      path: '/manutencoes/nova'
+      fullPath: '/manutencoes/nova'
+      preLoaderRoute: typeof AuthenticatedManutencoesNovaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/veiculos_/novo': {
+      id: '/_authenticated/veiculos_/novo'
+      path: '/veiculos/novo'
+      fullPath: '/veiculos/novo'
+      preLoaderRoute: typeof AuthenticatedVeiculosNovoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/veiculos_/$vehicleId/editar': {
+      id: '/_authenticated/veiculos_/$vehicleId/editar'
+      path: '/veiculos/$vehicleId/editar'
+      fullPath: '/veiculos/$vehicleId/editar'
+      preLoaderRoute: typeof AuthenticatedVeiculosVehicleIdEditarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedVeiculosRoute: typeof AuthenticatedVeiculosRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedManutencoesNovaRoute: typeof AuthenticatedManutencoesNovaRoute
+  AuthenticatedVeiculosNovoRoute: typeof AuthenticatedVeiculosNovoRoute
+  AuthenticatedVeiculosVehicleIdEditarRoute: typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedVeiculosRoute: AuthenticatedVeiculosRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedManutencoesNovaRoute: AuthenticatedManutencoesNovaRoute,
+  AuthenticatedVeiculosNovoRoute: AuthenticatedVeiculosNovoRoute,
+  AuthenticatedVeiculosVehicleIdEditarRoute:
+    AuthenticatedVeiculosVehicleIdEditarRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
