@@ -84,7 +84,13 @@ function AuthPage() {
     });
     setLoading(false);
     if (error) {
-      toast.error(error.message.includes("already") ? "Este e-mail já tem uma conta." : "Não foi possível criar a conta.");
+      toast.error(
+        error.message.includes("already")
+          ? "Este e-mail já tem uma conta."
+          : error.code === "weak_password"
+            ? "Essa senha é muito fraca. Escolha uma senha mais forte e menos comum."
+            : "Não foi possível criar a conta.",
+      );
       return;
     }
     if (!data.session) {
