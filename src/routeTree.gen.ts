@@ -12,8 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedEstatisticasRouteImport } from './routes/_authenticated/estatisticas'
+import { Route as AuthenticatedGastosRouteImport } from './routes/_authenticated/gastos'
+import { Route as AuthenticatedHistoricoRouteImport } from './routes/_authenticated/historico'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedVeiculosRouteImport } from './routes/_authenticated/veiculos'
+import { Route as AuthenticatedGastosNovoRouteImport } from './routes/_authenticated/gastos_.novo'
 import { Route as AuthenticatedManutencoesNovaRouteImport } from './routes/_authenticated/manutencoes.nova'
 import { Route as AuthenticatedVeiculosNovoRouteImport } from './routes/_authenticated/veiculos_.novo'
 import { Route as AuthenticatedVeiculosVehicleIdEditarRouteImport } from './routes/_authenticated/veiculos_.$vehicleId.editar'
@@ -32,14 +37,40 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEstatisticasRoute =
+  AuthenticatedEstatisticasRouteImport.update({
+    id: '/estatisticas',
+    path: '/estatisticas',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedGastosRoute = AuthenticatedGastosRouteImport.update({
+  id: '/gastos',
+  path: '/gastos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHistoricoRoute = AuthenticatedHistoricoRouteImport.update({
+  id: '/historico',
+  path: '/historico',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedVeiculosRoute = AuthenticatedVeiculosRouteImport.update({
   id: '/veiculos',
   path: '/veiculos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedGastosNovoRoute = AuthenticatedGastosNovoRouteImport.update({
+  id: '/gastos_/novo',
+  path: '/gastos/novo',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedManutencoesNovaRoute =
@@ -64,17 +95,27 @@ const AuthenticatedVeiculosVehicleIdEditarRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
+  '/estatisticas': typeof AuthenticatedEstatisticasRoute
+  '/gastos': typeof AuthenticatedGastosRoute
+  '/historico': typeof AuthenticatedHistoricoRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
   '/veiculos': typeof AuthenticatedVeiculosRoute
+  '/gastos/novo': typeof AuthenticatedGastosNovoRoute
   '/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
   '/veiculos/novo': typeof AuthenticatedVeiculosNovoRoute
   '/veiculos/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
+  '/estatisticas': typeof AuthenticatedEstatisticasRoute
+  '/gastos': typeof AuthenticatedGastosRoute
+  '/historico': typeof AuthenticatedHistoricoRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
   '/veiculos': typeof AuthenticatedVeiculosRoute
   '/': typeof AuthenticatedIndexRoute
+  '/gastos/novo': typeof AuthenticatedGastosNovoRoute
   '/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
   '/veiculos/novo': typeof AuthenticatedVeiculosNovoRoute
   '/veiculos/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
@@ -83,9 +124,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/estatisticas': typeof AuthenticatedEstatisticasRoute
+  '/_authenticated/gastos': typeof AuthenticatedGastosRoute
+  '/_authenticated/historico': typeof AuthenticatedHistoricoRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/veiculos': typeof AuthenticatedVeiculosRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/gastos_/novo': typeof AuthenticatedGastosNovoRoute
   '/_authenticated/manutencoes/nova': typeof AuthenticatedManutencoesNovaRoute
   '/_authenticated/veiculos_/novo': typeof AuthenticatedVeiculosNovoRoute
   '/_authenticated/veiculos_/$vehicleId/editar': typeof AuthenticatedVeiculosVehicleIdEditarRoute
@@ -95,17 +141,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/estatisticas'
+    | '/gastos'
+    | '/historico'
     | '/onboarding'
+    | '/perfil'
     | '/veiculos'
+    | '/gastos/novo'
     | '/manutencoes/nova'
     | '/veiculos/novo'
     | '/veiculos/$vehicleId/editar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
+    | '/estatisticas'
+    | '/gastos'
+    | '/historico'
     | '/onboarding'
+    | '/perfil'
     | '/veiculos'
     | '/'
+    | '/gastos/novo'
     | '/manutencoes/nova'
     | '/veiculos/novo'
     | '/veiculos/$vehicleId/editar'
@@ -113,9 +169,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/estatisticas'
+    | '/_authenticated/gastos'
+    | '/_authenticated/historico'
     | '/_authenticated/onboarding'
+    | '/_authenticated/perfil'
     | '/_authenticated/veiculos'
     | '/_authenticated/'
+    | '/_authenticated/gastos_/novo'
     | '/_authenticated/manutencoes/nova'
     | '/_authenticated/veiculos_/novo'
     | '/_authenticated/veiculos_/$vehicleId/editar'
@@ -149,6 +210,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/estatisticas': {
+      id: '/_authenticated/estatisticas'
+      path: '/estatisticas'
+      fullPath: '/estatisticas'
+      preLoaderRoute: typeof AuthenticatedEstatisticasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/gastos': {
+      id: '/_authenticated/gastos'
+      path: '/gastos'
+      fullPath: '/gastos'
+      preLoaderRoute: typeof AuthenticatedGastosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/historico': {
+      id: '/_authenticated/historico'
+      path: '/historico'
+      fullPath: '/historico'
+      preLoaderRoute: typeof AuthenticatedHistoricoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/onboarding': {
       id: '/_authenticated/onboarding'
       path: '/onboarding'
@@ -156,11 +238,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/veiculos': {
       id: '/_authenticated/veiculos'
       path: '/veiculos'
       fullPath: '/veiculos'
       preLoaderRoute: typeof AuthenticatedVeiculosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/gastos_/novo': {
+      id: '/_authenticated/gastos_/novo'
+      path: '/gastos/novo'
+      fullPath: '/gastos/novo'
+      preLoaderRoute: typeof AuthenticatedGastosNovoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/manutencoes/nova': {
@@ -188,18 +284,28 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedEstatisticasRoute: typeof AuthenticatedEstatisticasRoute
+  AuthenticatedGastosRoute: typeof AuthenticatedGastosRoute
+  AuthenticatedHistoricoRoute: typeof AuthenticatedHistoricoRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedVeiculosRoute: typeof AuthenticatedVeiculosRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedGastosNovoRoute: typeof AuthenticatedGastosNovoRoute
   AuthenticatedManutencoesNovaRoute: typeof AuthenticatedManutencoesNovaRoute
   AuthenticatedVeiculosNovoRoute: typeof AuthenticatedVeiculosNovoRoute
   AuthenticatedVeiculosVehicleIdEditarRoute: typeof AuthenticatedVeiculosVehicleIdEditarRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedEstatisticasRoute: AuthenticatedEstatisticasRoute,
+  AuthenticatedGastosRoute: AuthenticatedGastosRoute,
+  AuthenticatedHistoricoRoute: AuthenticatedHistoricoRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedVeiculosRoute: AuthenticatedVeiculosRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedGastosNovoRoute: AuthenticatedGastosNovoRoute,
   AuthenticatedManutencoesNovaRoute: AuthenticatedManutencoesNovaRoute,
   AuthenticatedVeiculosNovoRoute: AuthenticatedVeiculosNovoRoute,
   AuthenticatedVeiculosVehicleIdEditarRoute:
