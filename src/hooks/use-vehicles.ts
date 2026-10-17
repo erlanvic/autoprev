@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { getActiveVehicleId, setActiveVehicleId, useActiveVehicleId } from "@/lib/active-vehicle";
@@ -17,12 +18,13 @@ export function useVehicles() {
 export function useActiveVehicle(vehicles: Vehicle[] | undefined) {
   const activeId = useActiveVehicleId();
   const first = vehicles?.[0];
-  if (!first) return null;
-  const found = vehicles.find((v) => v.id === activeId);
-  if (found) return found;
-  // persist the fallback so the rest of the app agrees
-  if (getActiveVehicleId() !== first.id) setActiveVehicleId(first.id);
-  return first;
+  const found = first ? (vehicles!.find((v) => v.id === activeId) ?? first) : null;
+  const fallback = found === first && !!first && getActiveVehicleId() !== first.id;
+  // persist the fallback so the rest of the app agrees (outside render)
+  useEffect(() => {
+    if (fallback && first) setActiveVehicleId(first.id);
+  }, [fallback, first]);
+  return found;
 }
 
 export function useMaintenances(vehicleId: string | undefined) {
