@@ -41,7 +41,7 @@ function ExpensesPage() {
   const groups = useMemo(() => {
     const map = new Map<string, Expense[]>();
     for (const e of expenses ?? []) {
-      const [y, mo] = e.data.slice(0, 7).split("-").map(Number);
+      const [y = 0, mo = 1] = e.data.slice(0, 7).split("-").map(Number);
       const key = new Date(y, mo - 1, 1).toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
       map.set(key, [...(map.get(key) ?? []), e]);
     }

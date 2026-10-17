@@ -16,12 +16,13 @@ export function useVehicles() {
 
 export function useActiveVehicle(vehicles: Vehicle[] | undefined) {
   const activeId = useActiveVehicleId();
-  if (!vehicles || vehicles.length === 0) return null;
+  const first = vehicles?.[0];
+  if (!first) return null;
   const found = vehicles.find((v) => v.id === activeId);
   if (found) return found;
   // persist the fallback so the rest of the app agrees
-  if (getActiveVehicleId() !== vehicles[0].id) setActiveVehicleId(vehicles[0].id);
-  return vehicles[0];
+  if (getActiveVehicleId() !== first.id) setActiveVehicleId(first.id);
+  return first;
 }
 
 export function useMaintenances(vehicleId: string | undefined) {

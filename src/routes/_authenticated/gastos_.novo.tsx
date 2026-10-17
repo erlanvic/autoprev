@@ -69,7 +69,7 @@ function NewExpensePage() {
       <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-card">
         <div className="space-y-1.5">
           <Label>Veículo</Label>
-          <Select value={selectedVehicleId} onValueChange={setVehicleId}>
+          <Select value={selectedVehicleId ?? ""} onValueChange={setVehicleId}>
             <SelectTrigger className={field}>
               <SelectValue placeholder="Selecione o veículo" />
             </SelectTrigger>

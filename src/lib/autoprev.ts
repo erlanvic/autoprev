@@ -62,7 +62,7 @@ export function formatKm(km: number): string {
 }
 
 export function formatDate(iso: string): string {
-  const [y, m, d] = iso.slice(0, 10).split("-").map(Number);
+  const [y = 0, m = 1, d = 1] = iso.slice(0, 10).split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "short",
