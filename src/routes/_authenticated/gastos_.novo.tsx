@@ -39,6 +39,7 @@ function NewExpensePage() {
   const [saving, setSaving] = useState(false);
 
   const selectedVehicleId = vehicleId ?? active?.id;
+  console.log("DBG gastos-novo", { vehicles: vehicles?.length, active: active?.id, selectedVehicleId });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
