@@ -12,9 +12,8 @@ import { MAINTENANCE_ICONS, MAINTENANCE_TYPES, todayISO, vehicleLabel } from "@/
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/manutencoes/nova")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    tipo: typeof search.tipo === "string" ? search.tipo : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>) =>
+    typeof search["tipo"] === "string" ? { tipo: search["tipo"] } : {},
   head: () => ({
     meta: [
       { title: "Nova manutenção — AutoPrev" },
@@ -85,7 +84,7 @@ function NewMaintenancePage() {
       <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-card">
         <div className="space-y-1.5">
           <Label>Veículo</Label>
-          <Select value={selectedVehicleId} onValueChange={setVehicleId}>
+          <Select value={selectedVehicleId ?? ""} onValueChange={(v) => v && setVehicleId(v)}>
             <SelectTrigger className={field}>
               <SelectValue placeholder="Selecione o veículo" />
             </SelectTrigger>
