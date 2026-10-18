@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { MailCheck, ShieldCheck } from "lucide-react";
+import { MailCheck } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -104,9 +104,7 @@ function AuthPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-10">
       <div className="w-full max-w-sm animate-fade-up">
         <div className="flex flex-col items-center text-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-primary text-primary-foreground shadow-fab">
-            <ShieldCheck className="h-8 w-8" />
-          </span>
+          <img src="/favicon.svg" alt="AutoPrev" className="h-16 w-16 rounded-3xl shadow-fab" />
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground">AutoPrev</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             O guardião financeiro do seu veículo
